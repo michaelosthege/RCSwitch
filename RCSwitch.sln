@@ -1,0 +1,143 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RCSwitch", "RCSwitch\RCSwitch.vcxproj", "{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSwitch.Test", "RCSwitch.Test\RCSwitch.Test.csproj", "{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSwitch.Example", "RCSwitch.Example\RCSwitch.Example.csproj", "{F08D0950-608D-4B9B-8895-103169A2B1ED}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "NuGet", "NuGet", "{E9D6ABBA-74AC-4548-910D-5168FEBD025D}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_3103"
+		Debug.AspNetCompiler.PhysicalPath = "NuGet\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3103\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_3103"
+		Release.AspNetCompiler.PhysicalPath = "NuGet\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3103\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "3103"
+		SlnRelativePath = "NuGet\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|ARM.Build.0 = Debug|ARM
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|x64.ActiveCfg = Debug|x64
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|x64.Build.0 = Debug|x64
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|x86.ActiveCfg = Debug|Win32
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Debug|x86.Build.0 = Debug|Win32
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|Any CPU.ActiveCfg = Release|Win32
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|ARM.ActiveCfg = Release|ARM
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|ARM.Build.0 = Release|ARM
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|x64.ActiveCfg = Release|x64
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|x64.Build.0 = Release|x64
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|x86.ActiveCfg = Release|Win32
+		{E6F373C6-4CE6-4BA3-9BC6-40B3F9017DDD}.Release|x86.Build.0 = Release|Win32
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|ARM.Build.0 = Debug|ARM
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|ARM.Deploy.0 = Debug|ARM
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|x64.ActiveCfg = Debug|x64
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|x64.Build.0 = Debug|x64
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|x64.Deploy.0 = Debug|x64
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|x86.ActiveCfg = Debug|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|x86.Build.0 = Debug|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Debug|x86.Deploy.0 = Debug|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|Any CPU.ActiveCfg = Release|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|ARM.ActiveCfg = Release|ARM
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|ARM.Build.0 = Release|ARM
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|ARM.Deploy.0 = Release|ARM
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|x64.ActiveCfg = Release|x64
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|x64.Build.0 = Release|x64
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|x64.Deploy.0 = Release|x64
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|x86.ActiveCfg = Release|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|x86.Build.0 = Release|x86
+		{AACD3E4D-90C2-46CF-BF97-1D3138C627D3}.Release|x86.Deploy.0 = Release|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|ARM.ActiveCfg = Debug|ARM
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|ARM.Build.0 = Debug|ARM
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|ARM.Deploy.0 = Debug|ARM
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|x64.ActiveCfg = Debug|x64
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|x64.Build.0 = Debug|x64
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|x64.Deploy.0 = Debug|x64
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|x86.ActiveCfg = Debug|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|x86.Build.0 = Debug|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Debug|x86.Deploy.0 = Debug|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|Any CPU.ActiveCfg = Release|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|ARM.ActiveCfg = Release|ARM
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|ARM.Build.0 = Release|ARM
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|ARM.Deploy.0 = Release|ARM
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|x64.ActiveCfg = Release|x64
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|x64.Build.0 = Release|x64
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|x64.Deploy.0 = Release|x64
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|x86.ActiveCfg = Release|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|x86.Build.0 = Release|x86
+		{F08D0950-608D-4B9B-8895-103169A2B1ED}.Release|x86.Deploy.0 = Release|x86
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|x64.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Debug|x86.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|ARM.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|ARM.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|x64.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|x64.Build.0 = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|x86.ActiveCfg = Debug|Any CPU
+		{E9D6ABBA-74AC-4548-910D-5168FEBD025D}.Release|x86.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://thecakedev.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = RCSwitch\\RCSwitch.vcxproj
+		SccProjectName1 = RCSwitch
+		SccLocalPath1 = RCSwitch
+		SccProjectUniqueName2 = RCSwitch.Test\\RCSwitch.Test.csproj
+		SccProjectName2 = RCSwitch.Test
+		SccLocalPath2 = RCSwitch.Test
+		SccProjectUniqueName3 = RCSwitch.Example\\RCSwitch.Example.csproj
+		SccProjectName3 = RCSwitch.Example
+		SccLocalPath3 = RCSwitch.Example
+		SccWebProject4 = true
+		SccProjectUniqueName4 = NuGet
+		SccProjectName4 = NuGet
+		SccLocalPath4 = NuGet
+		SccProjectEnlistmentChoice4 = 2
+	EndGlobalSection
+EndGlobal
