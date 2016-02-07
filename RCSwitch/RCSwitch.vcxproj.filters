@@ -8,10 +8,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="..\..\Remote Power\RemotePower\RCSwitch\RCSwitchIO.cpp" />
+    <ClCompile Include="RCSwitchIO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="..\..\Remote Power\RemotePower\RCSwitch\RCSwitchIO.h" />
+    <ClInclude Include="RCSwitchIO.h" />
   </ItemGroup>
 </Project>
