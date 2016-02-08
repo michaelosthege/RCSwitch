@@ -37,8 +37,35 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 using namespace Platform;
 using namespace Windows::Devices::Gpio;
+using namespace Windows::Foundation;
 
 namespace RCSwitch {
+
+	public ref class Signal sealed
+	{
+	public:
+		property unsigned int Protocol { public: unsigned int get() { return _Protocol; } private: void set(unsigned int value) { _Protocol = value; } }
+		property unsigned int Delay { public: unsigned int get() { return _Delay; } private: void set(unsigned int value) { _Delay = value; } }
+		property unsigned int BitLength { public: unsigned int get() { return _BitLength; } private: void set(unsigned int value) { _BitLength = value; } }
+		//property unsigned long Value { public: unsigned long get() { return _Value; } private: void set(unsigned long value) { _Value = value; } }
+		property Platform::String^ Code { public: String^ get() { return _Code; } private: void set(String^ value) { _Code = value; } }
+
+		Signal(unsigned int protocol, unsigned int delay, unsigned int bitlength, String^ code) {
+			this->Protocol = protocol;
+			this->BitLength = bitlength;
+			this->Delay = delay;
+			this->Code = code;
+		}
+	private:
+		unsigned int _Protocol;
+		unsigned int _Delay;
+		unsigned int _BitLength;
+		//unsigned long _Value;
+		Platform::String^ _Code;
+	};
+
+	public delegate void SignalReceivedHandler(Platform::Object^ sender, Signal^ signal);
+
 	public ref class RCSwitchIO sealed
 	{
 	public:
@@ -51,24 +78,16 @@ namespace RCSwitch {
 		property int PulseLength { public: int get() { return _PulseLength; } void set(int value) { _PulseLength = value; } }
 		property int RepeatTransmit { public: int get() { return _RepeatTransmit; } void set(int value) { _RepeatTransmit = value; } }
 		property int Protocol { public: int get() { return _Protocol; } void set(int value) { _Protocol = value; } }
-		property int totalInterrupts { public: int get() { return _totalInterrupts; } void set(int value) { _totalInterrupts = value; } }
-		
+		//events
+		event SignalReceivedHandler^ OnSignalReceived;
+
+
 		//constructor
 		RCSwitchIO(int transmitPin, int receivePin);
 		//methods
 		bool Switch(String ^ group, String ^ device, bool on);
 		bool Switch(int nAddressCode, int nChannelCode, bool on);
 		
-		bool available();
-		void resetAvailable();
-
-		String^ getReceivedCode();
-		uint32 getReceivedValue();
-		unsigned int getReceivedBitlength();
-		unsigned int getReceivedDelay();
-		unsigned int getReceivedProtocol();
-		//unsigned int* getReceivedRawdata();
-
 		
 
 	private:
@@ -96,12 +115,7 @@ namespace RCSwitch {
 		LONGLONG lastTime;
 		
 		int nReceiveTolerance = 60;
-		unsigned long nReceivedValue = NULL;
-		unsigned int nReceivedBitlength = 0;
-		unsigned int nReceivedDelay = 0;
-		unsigned int nReceivedProtocol = 0;
 		unsigned int timings[RCSWITCH_MAX_CHANGES];
-		int _totalInterrupts = 0;
 
 		//transmitting
 		char* StringToChar(String^ str);
@@ -129,6 +143,7 @@ namespace RCSwitch {
 		bool receiveProtocol2(unsigned int changeCount);
 		bool receiveProtocol3(unsigned int changeCount);
 
+		String^ getReceivedCode(unsigned long receivedValue, unsigned int receivedBitlength);
 		char* dec2binWzerofill(unsigned long dec, unsigned int length);
 		char* bin2tristate(char* bin);
 		String^ StringFromAscIIChars(char* chars);

@@ -53,10 +53,9 @@ RCSwitch::RCSwitchIO::RCSwitchIO(int transmitPinNumber, int receivePinNumber)
 	QueryPerformanceFrequency((LARGE_INTEGER*)(&ticksPerMicrosecond));
 	ticksPerMicrosecond = ticksPerMicrosecond / 1000000;
 
-	
 
 	//initialization of GPIO stuff
-	if (Windows::Foundation::Metadata::ApiInformation::IsTypePresent("Windows::Devices::Gpio::GpioController"))//check if GPIO is available on this device
+	if (Windows::Foundation::Metadata::ApiInformation::IsTypePresent("Windows.Devices.Gpio.GpioController"))//check if GPIO is available on this device
 	{
 		this->gpioController = GpioController::GetDefault();
 		if (gpioController != nullptr)
@@ -96,9 +95,6 @@ bool RCSwitchIO::Switch(String^ group, String^ device, bool on)
 	char* group_c = StringToChar(group);
 	char* device_c = StringToChar(device);
 	this->sendTriState(this->getCodeWordA(group_c, device_c, on));
-	timings[0];
-	nReceivedValue;
-	totalInterrupts = _totalInterrupts;
 	//enable interrupt
 	if (disabled_Receive) {
 		this->enableReceive();
@@ -182,7 +178,7 @@ char* RCSwitchIO::getCodeWordA(char* sGroup, char* sDevice, bool bOn) {
 	}
 
 	sDipSwitches[j] = '\0';
-	OutputDebugStringA(sDipSwitches);
+	//OutputDebugStringA(sDipSwitches);
 	return sDipSwitches;
 }
 
@@ -387,8 +383,8 @@ void RCSwitchIO::transmit(int nHighPulses, int nLowPulses) {
 #pragma region Enabling and disabling the receive interrupt
 void RCSwitchIO::enableReceive() {
 	if (this->ReceivePinNumber != -1) {
-		nReceivedValue = NULL;
-		nReceivedBitlength = NULL;
+		//nReceivedValue = NULL;
+		//nReceivedBitlength = NULL;
 		//attachInterrupt(this->nReceiverInterrupt, handleInterrupt, CHANGE);
 
 		// the Windows 10 IoT implementation is follows:
@@ -414,16 +410,9 @@ void RCSwitchIO::disableReceive() {
 #pragma region Interpreting the Receive Interrupts
 void RCSwitchIO::OnValueChanged(GpioPin ^sender, GpioPinValueChangedEventArgs ^args)
 {
-	totalInterrupts++;
 	static unsigned int changeCount;
 	static unsigned int repeatCount;
 
-	//long time = micros();
-	//static unsigned long lastTime;
-	//static unsigned long duration;
-
-	
-	
 	
 	QueryPerformanceCounter((LARGE_INTEGER*)&currentTime);//get the current time point
 	if (lastTime == 0)
@@ -447,7 +436,8 @@ void RCSwitchIO::OnValueChanged(GpioPin ^sender, GpioPinValueChangedEventArgs ^a
 		}
 		changeCount = 0;
 	}
-	else if (duration > 5000) {
+	else if (duration > 5000)//no flank for 5 ms
+	{
 		changeCount = 0;
 	}
 
@@ -486,20 +476,20 @@ bool RCSwitchIO::receiveProtocol1(unsigned int changeCount) {
 	}
 	code = code >> 1;
 	if (changeCount > 6) {    // ignore < 4bit values as there are no devices sending 4bit values => noise
-		nReceivedValue = code;
-		nReceivedBitlength = changeCount / 2;
-		nReceivedDelay = delay;
-		nReceivedProtocol = 1;
+		unsigned long nReceivedValue = code;
+		unsigned int nReceivedBitlength = changeCount / 2;
+		unsigned int nReceivedDelay = delay;
+		unsigned int nReceivedProtocol = 1;
+
+		String^ rcode = getReceivedCode(nReceivedValue, nReceivedBitlength);
+		Signal^ signal = ref new Signal(nReceivedProtocol, nReceivedDelay, nReceivedBitlength, rcode);
+		OnSignalReceived(this, signal);
 	}
 
-	if (code == 0) {
+	if (code == 0)
 		return false;
-	}
-	else if (code != 0) {
+	else//if (code != 0)
 		return true;
-	}
-
-
 }
 
 bool RCSwitchIO::receiveProtocol2(unsigned int changeCount) {
@@ -525,19 +515,20 @@ bool RCSwitchIO::receiveProtocol2(unsigned int changeCount) {
 	}
 	code = code >> 1;
 	if (changeCount > 6) {    // ignore < 4bit values as there are no devices sending 4bit values => noise
-		nReceivedValue = code;
-		nReceivedBitlength = changeCount / 2;
-		nReceivedDelay = delay;
-		nReceivedProtocol = 2;
+		unsigned long nReceivedValue = code;
+		unsigned int nReceivedBitlength = changeCount / 2;
+		unsigned int nReceivedDelay = delay;
+		unsigned int nReceivedProtocol = 2;
+
+		String^ rcode = getReceivedCode(nReceivedValue, nReceivedBitlength);
+		Signal^ signal = ref new Signal(nReceivedProtocol, nReceivedDelay, nReceivedBitlength, rcode);
+		OnSignalReceived(this, signal);
 	}
 
-	if (code == 0) {
+	if (code == 0)
 		return false;
-	}
-	else if (code != 0) {
+	else//if (code != 0)
 		return true;
-	}
-
 }
 
 /** Protocol 3 is used by BL35P02.
@@ -572,34 +563,29 @@ bool RCSwitchIO::receiveProtocol3(unsigned int changeCount) {
 	}
 	code = code >> 1;
 	if (changeCount > 6) {    // ignore < 4bit values as there are no devices sending 4bit values => noise
-		nReceivedValue = code;
-		nReceivedBitlength = changeCount / 2;
-		nReceivedDelay = delay;
-		nReceivedProtocol = 3;
+		unsigned long nReceivedValue = code;
+		unsigned int nReceivedBitlength = changeCount / 2;
+		unsigned int nReceivedDelay = delay;
+		unsigned int nReceivedProtocol = 3;
+
+		String^ rcode = getReceivedCode(nReceivedValue, nReceivedBitlength);
+		Signal^ signal = ref new Signal(nReceivedProtocol, nReceivedDelay, nReceivedBitlength, rcode);
+		OnSignalReceived(this, signal);
 	}
 
-	if (code == 0) {
+	if (code == 0)
 		return false;
-	}
-	else if (code != 0) {
+	else//if (code != 0)
 		return true;
-	}
 }
 
 #pragma endregion
 
-#pragma region Querying the received data
-bool RCSwitchIO::available() {
-	return nReceivedValue != NULL;
-}
 
-void RCSwitchIO::resetAvailable() {
-	nReceivedValue = NULL;
-}
 
-String^ RCSwitchIO::getReceivedCode(){
-	char* bin = dec2binWzerofill(nReceivedValue, nReceivedBitlength);
-	char* tristate = "test";//bin2tristate(bin);
+String^ RCSwitchIO::getReceivedCode(unsigned long receivedValue, unsigned int receivedBitlength) {
+	char* bin = dec2binWzerofill(receivedValue, receivedBitlength);
+	char* tristate = bin2tristate(bin);
 	//char* tristate = bin2tristate(dec2binWzerofill(nReceivedValue, nReceivedBitlength));
 	std::string s_str = std::string(tristate);
 	std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
@@ -607,31 +593,6 @@ String^ RCSwitchIO::getReceivedCode(){
 	Platform::String^ p_string = ref new Platform::String(w_char);
 	return p_string;
 }
-
-uint32 RCSwitchIO::getReceivedValue() {
-	return nReceivedValue;
-}
-
-unsigned int RCSwitchIO::getReceivedBitlength() {
-	return nReceivedBitlength;
-}
-
-unsigned int RCSwitchIO::getReceivedDelay() {
-	return nReceivedDelay;
-}
-
-unsigned int RCSwitchIO::getReceivedProtocol() {
-	return nReceivedProtocol;
-}
-
-//unsigned int* RCSwitchIO::getReceivedRawdata() {
-//	return timings;
-//}
-
-#pragma endregion
-
-
-
 
 char* RCSwitchIO::dec2binWzerofill(unsigned long Dec, unsigned int bitLength) {
 	char bin[64];

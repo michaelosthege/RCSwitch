@@ -12,8 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// Die Vorlage "Leere Seite" ist unter http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 dokumentiert.
+using RCSwitch;
+using System.Threading.Tasks;
 
 namespace RCSwitch.Test
 {
@@ -27,7 +27,26 @@ namespace RCSwitch.Test
         public MainPage()
         {
             this.InitializeComponent();
-            StartReceiving();
+            TestAsync();
+            rcSwitch.OnSignalReceived += RcSwitch_OnSignalReceived;
+        }
+
+        private void RcSwitch_OnSignalReceived(object sender, Signal signal)
+        {
+            System.Diagnostics.Debug.WriteLine($"received: {signal.Code}");
+        }
+
+        private async void TestAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("starting test");
+            for (int i = 0; i < 10; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(rcSwitch.Switch("11001", "10000", true));
+                await Task.Delay(1000);
+                rcSwitch.Switch("11001", "10000", false);
+                await Task.Delay(1000);
+            }
+            System.Diagnostics.Debug.WriteLine("test ended");
         }
 
         private void On_Click(object sender, RoutedEventArgs e)
@@ -38,19 +57,6 @@ namespace RCSwitch.Test
         {
             rcSwitch.Switch(codeGroupTB.Text, codeDeviceTB.Text, true);
         }
-
-        private async void StartReceiving()
-        {
-            await System.Threading.Tasks.Task.Delay(20);
-            while (true)
-            {
-                if (rcSwitch.available())
-                {
-                    System.Diagnostics.Debug.WriteLine($"received: {rcSwitch.getReceivedCode()}");
-                    rcSwitch.resetAvailable();
-                }
-                await System.Threading.Tasks.Task.Delay(10);
-            }
-        }
+        
     }
 }
