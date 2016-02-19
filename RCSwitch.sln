@@ -125,24 +125,4 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://thecakedev.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = RCSwitch\\RCSwitch.vcxproj
-		SccProjectName1 = RCSwitch
-		SccLocalPath1 = RCSwitch
-		SccProjectUniqueName2 = RCSwitch.Test\\RCSwitch.Test.csproj
-		SccProjectName2 = RCSwitch.Test
-		SccLocalPath2 = RCSwitch.Test
-		SccProjectUniqueName3 = RCSwitch.Example\\RCSwitch.Example.csproj
-		SccProjectName3 = RCSwitch.Example
-		SccLocalPath3 = RCSwitch.Example
-		SccWebProject4 = true
-		SccProjectUniqueName4 = NuGet
-		SccProjectName4 = NuGet
-		SccLocalPath4 = NuGet
-		SccProjectEnlistmentChoice4 = 2
-	EndGlobalSection
 EndGlobal
